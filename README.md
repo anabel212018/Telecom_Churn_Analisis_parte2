@@ -1,103 +1,191 @@
-# Telecom_Churn_Analisis_parte2
-TelecomX - Churn Prediction Analysis
-Descripción del Proyecto
+# Análisis de Cancelación de Clientes (Churn) en Telecomunicaciones
 
-Este proyecto tiene como objetivo analizar y predecir la cancelación de clientes (Churn) en Telecom X utilizando técnicas de Análisis de Datos y Machine Learning.
+## Descripción del Proyecto
 
-La cancelación de clientes representa uno de los principales desafíos para las empresas de telecomunicaciones. Mediante el análisis de datos históricos y la construcción de modelos predictivos, es posible identificar clientes con alto riesgo de abandono y diseñar estrategias de retención más efectivas.
+La cancelación de clientes (customer churn) es uno de los principales desafíos para las empresas de telecomunicaciones. Retener clientes existentes suele ser más económico que adquirir nuevos, por lo que predecir el churn se convierte en un problema clave de negocio.
 
-Objetivos
+Este proyecto analiza datos de clientes de una empresa de telecomunicaciones con el objetivo de identificar los factores que influyen en la cancelación del servicio y construir un modelo de **Machine Learning** capaz de predecir qué clientes tienen mayor riesgo de abandonar la compañía.
 
-Analizar los factores que influyen en la cancelación de clientes
+El objetivo es generar **insights accionables** que ayuden a las empresas a diseñar estrategias de retención más efectivas y reducir la pérdida de clientes.
 
-Desarrollar modelos de Machine Learning para predecir churn
+---
 
-Identificar las variables más relevantes en la cancelación
+## Problema de Negocio
 
-Proponer recomendaciones estratégicas basadas en datos
+Las empresas de telecomunicaciones suelen enfrentar altos niveles de rotación de clientes. Identificar de forma temprana a los clientes con mayor probabilidad de cancelar su servicio permite implementar acciones preventivas como:
 
-Tecnologías Utilizadas
+* ofertas personalizadas
+* incentivos de contrato
+* intervenciones de soporte al cliente
 
-Python
+Al anticipar el churn, las empresas pueden **reducir pérdidas de ingresos y mejorar la satisfacción del cliente**.
 
-Pandas
+---
 
-NumPy
+## Descripción del Dataset
 
-Matplotlib
+El conjunto de datos contiene información de clientes que incluye datos demográficos, suscripciones a servicios, detalles de facturación y características del contrato.
 
-Seaborn
+Principales tipos de variables:
 
-Scikit-learn
+* Datos demográficos del cliente
+* Información de cuenta
+* Detalles del servicio de internet
+* Información de facturación y pagos
+* Características del contrato
 
-Google Colab
+La variable objetivo es:
 
-GitHub
+**Churn**
 
-Proceso del Proyecto
+* **1 → Cliente canceló el servicio**
+* **0 → Cliente permanece en la compañía**
 
-El proyecto sigue las principales etapas de un flujo de trabajo de Data Science:
+Distribución de clases:
 
-1. Limpieza de Datos
+* **73% clientes retenidos**
+* **27% clientes que cancelaron**
 
-Tratamiento de valores nulos
+Esto indica un **desbalance moderado de clases**, algo común en problemas de churn.
 
-Transformación de variables categóricas
+---
 
-Normalización de datos
+## Flujo del Proyecto (Pipeline de Data Science)
 
-2. Análisis Exploratorio de Datos (EDA)
+El proyecto sigue un flujo estándar de análisis de datos y machine learning:
 
-Distribución de churn
+### 1. Limpieza de Datos
 
-Análisis de cargos mensuales
+* manejo de valores faltantes
+* conversión de variables a tipos de datos adecuados
+* estandarización de variables categóricas
 
-Evaluación de antigüedad del cliente
+### 2. Análisis Exploratorio de Datos (EDA)
 
-Impacto del tipo de contrato
+* análisis de la distribución del churn
+* exploración de patrones de comportamiento del cliente
+* identificación de posibles variables relevantes
 
-3. Modelado Predictivo
+### 3. Ingeniería de Características
 
-Se desarrollaron dos modelos de clasificación:
+* transformación de variables
+* codificación de variables categóricas para el modelo
 
-Regresión Logística
+### 4. Entrenamiento del Modelo
 
-Random Forest
+Se utilizó un modelo de **Random Forest Classifier**, debido a su buen desempeño en datasets estructurados y su capacidad para identificar variables importantes.
 
-Los modelos fueron evaluados utilizando métricas de desempeño como Accuracy, Precision, Recall y F1-score.
+### 5. Evaluación del Modelo
 
-Resultados
+El modelo fue evaluado utilizando métricas comunes de clasificación:
 
-El modelo Random Forest mostró el mejor desempeño para la predicción de churn.
+* Accuracy
+* Precision
+* Recall
+* Matriz de Confusión
 
-Las variables más importantes identificadas fueron:
+---
 
-Total Charges
+## Resultados del Modelo
 
-Tenure del cliente
+Modelo utilizado: **Random Forest Classifier**
 
-Cargos mensuales
+Accuracy aproximada: **80%**
 
-Tipo de contrato
+El modelo demuestra una capacidad razonable para distinguir entre clientes que cancelan el servicio y aquellos que permanecen en la empresa.
 
-Método de pago
+El análisis de la **matriz de confusión** muestra que el modelo logra identificar una proporción significativa de clientes con riesgo de churn manteniendo un equilibrio aceptable en las predicciones.
 
-Tipo de servicio de internet
+---
 
-Estos resultados indican que el churn está principalmente relacionado con factores económicos y contractuales.
+## Importancia de Variables
 
-Recomendaciones
+El modelo identificó las siguientes variables como las más influyentes para predecir el churn:
 
-Con base en los resultados del modelo se sugieren las siguientes estrategias:
+1. Total Charges (Cargos Totales)
+2. Tenure (Antigüedad del cliente)
+3. Monthly Charges (Cargos mensuales)
+4. Cuentas Diarias
+5. Método de Pago (Electronic Check)
+6. Tipo de Servicio de Internet (Fibra Óptica)
 
-Programas de fidelización para clientes nuevos
+Estas variables tienen un impacto importante en la probabilidad de cancelación del cliente.
 
-Incentivos para contratos de largo plazo
+---
 
-Optimización de la relación precio–valor del servicio
+## Principales Insights
 
-Mejora de la experiencia para usuarios de fibra óptica
+Del análisis se desprenden varias conclusiones relevantes:
 
-Autor
+* Los clientes con **poca antigüedad** tienen mayor probabilidad de cancelar el servicio.
+* Los **cargos mensuales altos** se asocian con mayor riesgo de churn.
+* Los clientes que utilizan **electronic check como método de pago** presentan mayor tasa de cancelación.
+* La **duración del contrato** está fuertemente relacionada con la retención de clientes.
 
-Magaly Anabel Hernández
+Estos patrones sugieren que **la estructura de precios y el tipo de contrato influyen significativamente en la fidelización del cliente**.
+
+---
+
+## Recomendaciones de Negocio
+
+Con base en el análisis, las empresas de telecomunicaciones podrían considerar las siguientes estrategias:
+
+**Programas tempranos de retención**
+Enfocar esfuerzos de retención en clientes con poca antigüedad.
+
+**Optimización de precios**
+Revisar estructuras de precios que puedan estar asociadas a mayor churn.
+
+**Incentivos en métodos de pago**
+Promover métodos de pago alternativos para reducir el riesgo asociado a ciertos tipos de pago.
+
+**Programas de fidelización mediante contratos**
+Ofrecer beneficios o descuentos por contratos de mayor duración.
+
+---
+
+## Tecnologías Utilizadas
+
+* Python
+* Pandas
+* NumPy
+* Scikit-learn
+* Matplotlib
+* Seaborn
+* Jupyter Notebook
+
+---
+
+## Estructura del Repositorio
+
+data/ → dataset utilizado en el análisis
+notebooks/ → notebook principal del análisis
+images/ → visualizaciones y gráficos
+README.md → documentación del proyecto
+
+---
+
+## Autor
+
+**Magaly Anabel Hernández**
+
+Aspirante a Data Analyst / Data Scientist enfocada en análisis de datos, machine learning y toma de decisiones basada en datos.
+
+---
+
+## Mejoras Futuras
+
+Posibles extensiones de este proyecto:
+
+* probar otros modelos de machine learning (XGBoost, Logistic Regression)
+* optimización de hiperparámetros
+* segmentación de clientes según probabilidad de churn
+* desarrollo de un dashboard de churn para usuarios de negocio
+
+---
+
+## Conclusión
+
+Este proyecto demuestra cómo el análisis de datos y el machine learning pueden utilizarse para identificar patrones de cancelación de clientes y apoyar la toma de decisiones en empresas de telecomunicaciones.
+
+Al combinar análisis exploratorio, modelado predictivo e interpretación de resultados, es posible desarrollar estrategias proactivas para **reducir el churn y mejorar la retención de clientes**.
